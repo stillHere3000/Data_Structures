@@ -7,21 +7,20 @@ Any and all work in this file is my own.
 
 /*
  * (a) Creates 7 students with different id numbers and names. One of these students must
-have your name on it - the rest can be random. Print each one to the console.
-(b) Set the student’s averages to any values you like (range from 0-100). Use a variety of
-values and print the students to the console again. If you’d like to use random numbers,
-you can use this code to get a random number between 0 and 100:
-Math.random() * 101. Note: we don’t cast to int here because average is a double value.
-(c) Creates an instructor with a different id and name to the students. Print it to the
-console.
-(d) Create two courses with any code and names you wish - be creative!
-(e) Assign the instructor to both courses. Print the courses to the console.
-(f) Assign 5 of the 7 students to the first course and the other 2 to the second. Print the
-courses after you are done.
-(g) Assign all students grades. Print all the students to the console.
-(h) Unenroll two students (your choice) from the first course. Print the course to the
-console.
-
+ * have your name on it - the rest can be random. Print each one to the console.
+ * (b) Set the student’s averages to any values you like (range from 0-100). Use a variety of
+ * values and print the students to the console again. If you’d like to use random numbers,
+ * you can use this code to get a random number between 0 and 100:
+ * Math.random() * 101. Note: we don’t cast to int here because average is a double value.
+ * (c) Creates an instructor with a different id and name to the students. Print it to the
+ * console.
+ * (d) Create two courses with any code and names you wish - be creative!
+ * (e) Assign the instructor to both courses. Print the courses to the console.
+ * (f) Assign 5 of the 7 students to the first course and the other 2 to the second. 
+ * Print the courses after you are done.
+ * (g) Assign all students grades. Print all the students to the console.
+ * (h) Unenroll two students (your choice) from the first course. Print the course to the console.
+ * 
  */
 
 public class SchoolDriver {
@@ -34,15 +33,24 @@ public class SchoolDriver {
         Course course2 = new Course("MARVEL HERO TRAINING 2266", "MRVL2266");
         Instructor instructor = new Instructor(0-makeRandomID(), "Stan Lee", "Marvel Universe");
         Instructor instructor2 = new Instructor(0-makeRandomID(), "Nick Fury", "Marvel Universe");
+        
         course1.setInstructor(instructor);      course2.setInstructor(instructor2);
         for (int i = 0; i < 7; i++) {
             Student badStudent = new Student(makeRandomID(), getMarvelBadStudentName(i));
-            Student goodStudent = new Student(makeRandomID(), getMarvelGoodStudentName(i));
-            setStudentAverages(badStudent);        setStudentAverages(goodStudent);
-            course1.enroll(badStudent);        course2.enroll(goodStudent);
-            System.out.println(badStudent);        System.out.println(goodStudent);
+            
+            setStudentAverages(badStudent);        
+           
+            if(i == 0 || i==1 || i==2 || i==3 || i==4)
+                course1.enroll(badStudent);
+            else
+                course2.enroll(badStudent);
+            System.out.println(badStudent);                   
         }
+
+        course1.unenroll(course1.getStudents().get(4));       course1.unenroll(course1.getStudents().get(3));
+       
         System.out.println(course1);        System.out.println(course2);
+
     }
 
     public static int makeRandomID(){
